@@ -1,6 +1,4 @@
-##################
-# FILL IN HEADER
-#################
+# Names: Kennedy May and Sara Morrison
 
 import math
 import time
@@ -22,6 +20,8 @@ mb.sleep(1000)
 mb.display.show(mb.Image.HEART)  # Display Heart while logging
 time0 = mb.running_time()
 
+message = ""
+
 # Read and send accelerometer data repeatedly until button A is pressed again
 while not mb.button_a.is_pressed():
     acc_x = (mb.accelerometer.get_x())
@@ -29,8 +29,7 @@ while not mb.button_a.is_pressed():
     acc_z = (mb.accelerometer.get_z())
     time1 = mb.running_time()
     current_time = time1 - time0
-    message = str(current_time) + "," + str(acc_x) + "," str(acc_y) + "," str(acc_z)
-    print(message)
+    message = (str(current_time) + "," + str(acc_x) + "," + str(acc_y) + "," + str(acc_z))
 
 
     radio.send(message)
