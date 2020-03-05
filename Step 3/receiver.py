@@ -1,9 +1,13 @@
 #Names: Kennedy May and Sara Morrison
 
+import os
 import math
 import time
 import microbit as mb
 import radio  # Needs to be imported separately
+
+path = "/Users/saramorrison/mu_code/data_capture"
+
 
 
 radio.on()  # Turn on radio
