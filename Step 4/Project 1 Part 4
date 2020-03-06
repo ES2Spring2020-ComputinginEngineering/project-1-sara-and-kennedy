@@ -1,0 +1,110 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Thu Mar  5 17:43:59 2020
+
+@author: kennedymay
+"""
+
+#IMPORT STATEMENTS
+import numpy as np 
+import matplotlib.pyplot as plt
+from scipy.signal import find_peaks
+import os
+
+
+path = '/Users/kennedymay/mu_code/data_capture'
+os.chdir(path)
+
+
+#VARIABLES
+array1 = np.loadtxt('1_piece.csv', delimiter=',' , dtype=int)
+array2 = np.loadtxt('2_pieces.csv', delimiter=',',  dtype=int)
+array3 = np.loadtxt('3_pieces.csv', delimiter=',' , dtype=int)
+array4 = np.loadtxt('4_pieces.csv', delimiter=',',  dtype=int)
+array5 = np.loadtxt('5_pieces.csv', delimiter=',' , dtype=int)
+
+
+#CUSTOM FUNCTIONS
+def plots(array):
+    time = array[20:300, 0]
+    x_acc = array[20:300, 1]
+    y_acc = array[20:300, 2]
+    z_acc = array[20:300, 3]
+    
+    figs, axs = plt.subplots(3,1)
+    axs[0].plot(time, x_acc)
+    axs[1].plot(time, y_acc)
+    axs[2].plot(time, z_acc)
+    
+    axs[0].set_ylabel('Acceleration')
+    
+    axs[1].set_ylabel('Acceleration')
+    
+    axs[2].set_ylabel('Acceleration')
+    axs[2].set_xlabel('Time')
+    
+    return plt.show()
+
+
+def find_tilt_x(array):
+    z_acc = array[20:300, 3]
+    y_acc = array[20:300, 2]
+    x_acc = array[20:300, 1]
+    z = (z_acc**2)
+    y = (y_acc**2)
+    tiltx = (np.arctan2(x_acc, (np.sqrt(z+y))))*(180/np.pi)
+    return tiltx
+
+def find_tilt_y(array):
+    z_acc = array[20:300, 3]
+    y_acc = array[20:300, 2]
+    x_acc = array[20:300, 1]
+    z = (z_acc**2)
+    x = (x_acc**2)
+    tilty = (np.arctan2(y_acc, (np.sqrt(z+x))))*(180/np.pi)
+    return tilty
+
+def theta_vs_time(array):
+    time = array[20:300, 0]
+    theta = find_tilt_y(array)
+    plt.plot(time, theta)
+    
+    plt.xlabel('Time')
+    plt.ylabel('Theta (degrees)')
+    
+    return plt.show()
+
+def period_vs_time(array):
+    time = array[20:300, 0]
+    theta = find_tilt_x(array)
+    peaks = find_peaks(theta)
+    
+    plt.plot(time, peaks)
+    plt.xlabel('Time')
+    plt.ylabel('Period')
+    
+    return plt.show()
+
+
+plots(array1)
+plots(array2)
+plots(array3)
+plots(array4)
+plots(array5)
+
+theta_vs_time(array1)
+
+#period_vs_time(array1)
+
+
+
+
+
+
+
+
+
+
+
+    
