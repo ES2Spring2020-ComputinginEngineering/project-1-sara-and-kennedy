@@ -6,18 +6,29 @@ Created on Tue Mar 31 16:32:49 2020
 @author: kennedymay
 """
 
+
+# Names: Kennedy May and Sara Morrison
+
+#Import Statements
 import numpy as np
 import matplotlib.pyplot as plt
 import math
 from numpy import cos
 
+#Global Variables
 lengths = np.array([.53, .43, .33, .23, .13]) #creates an array of pendulum lengths in meters
 time = np.linspace(0, 10, 200) #times between 0 and 10 with a time step of 0.05 seconds
 g = -9.81
 
-def pendulum(length, angle1): #function that takes length of pendulum and starting angle and then creates plots of Time vs Angluar Position, Time vs Angular Velocity, and Time vs Angular Acceleration
+#Custom Funtions
+'''
+function that takes two arguments:length of pendulum and starting angle 
+It uses these inputs in equations to find angular position, angular velocity, and angular acceleration
+It then creates plots of Time vs Angluar Position, Time vs Angular Velocity, and Time vs Angular Acceleration'''
+
+def pendulum(length, angle1): 
+    
     angle_radians = np.radians(angle1)
-    angular_frequency1 = np.radians(0)
     
     angular_frequency = np.sqrt(-g/length)
     
@@ -31,20 +42,28 @@ def pendulum(length, angle1): #function that takes length of pendulum and starti
     plt.title("Time vs Angle for Length" + " " + str(length))
     plt.xlabel("Time (seconds)")
     plt.ylabel("Angle (radians)")
-    plt.plot(time, angle)
+    plt.plot(time, angle)    #plots Time vs Angular Position
     
     plt.subplot(2, 2, 2)
     plt.title("Time vs Velocity for Length" + " " + str(length))
     plt.xlabel("Time (seconds)")
     plt.ylabel("Velocity (radians/s)")
-    plt.plot(time, angular_velocity)
+    plt.plot(time, angular_velocity)   #plots Time vs Angular Velocity
     
     plt.subplot(2, 2, 3)
     plt.title("Time vs Acceleration, Length:" + " " + str(length))
     plt.xlabel("Time (seconds)")
     plt.ylabel("Acceleration (radians/s/s)")
-    plt.plot(time, angular_acceleration)
+    plt.plot(time, angular_acceleration)    #plots Time vs Angular Acceleration
     plt.tight_layout()
     plt.show
+ 
 
-pendulum(.53, 40)
+# funtion that takes an array as an input
+# returns a plot of lengths vs periods
+def findperiod(array):
+    period = [2 * np.pi * np.sqrt(l / (-1 * g)) for l in lengths]
+    periodarray = np.array(period)
+    plt.plot(lengths, periodarray)
+    plt.show
+
