@@ -1,0 +1,49 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+"""Step 2 Theoretical Model Code
+Name: Kennedy May and Sara Morrison
+"""
+
+#IMPORT STATMENTS
+import numpy as np 
+import matplotlib.pyplot as plt
+
+
+#VARIABLES
+length = np.array([.13, .23, .33, .43, .53])
+
+
+
+#CUSTOM FUNCTIONS
+
+'''
+This function takes a parameter length and estimates a period
+for the pendulum, it then returns this value
+'''
+
+def estimatedPeriod(length):
+    period = (2*np.pi*(np.sqrt(length/9.81)))
+    return period
+
+
+
+#MAIN SCRIPT
+period = estimatedPeriod(length)
+
+plt.plot(length, period)
+
+plt.title('Length vs. Period')
+plt.ylabel('Period Values (s)')
+plt.xlabel('Length (m)')
+plt.show()
+
+'''The limits of this model:
+    The estimates period values that we got assume that there is no friction
+    or air resistance and that the string of the pendulum is massless.
+    The pendulum also did not swing perfectly straight, which will
+    also cause a change in our estimated data verus the real life data.
+   '''
+
+
+    
