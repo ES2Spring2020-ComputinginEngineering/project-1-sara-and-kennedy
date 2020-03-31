@@ -1,12 +1,9 @@
-##################
-# FILL IN HEADER
-#################
+# Names: Kennedy May and Sara Morrison
 
+import math
+import time
 import microbit as mb
 import radio  # Needs to be imported separately
-import time
-import math
-from microbit import*
 
 # Change the channel if other microbits are interfering. (Default=7)
 radio.on()  # Turn on radio
@@ -21,23 +18,19 @@ while not mb.button_a.is_pressed():  # wait for button A to be pressed to begin 
 radio.send('start') # Send the word 'start' to start the receiver
 mb.sleep(1000)
 mb.display.show(mb.Image.HEART)  # Display Heart while logging
-time0 = mb.running_time
+time0 = mb.running_time()
 
+message = ""
 
 # Read and send accelerometer data repeatedly until button A is pressed again
 while not mb.button_a.is_pressed():
-    ######################################################
-    # FILL In HERE
-    # Need to collect accelerometer and time measurements
-    # Need to format into a single string
-    # Send the string over the radio
-    ######################################################
-    acc_x = mb.accelerometer.get_x()
-    acc_y = mb.accelerometer.get_y()
-    acc_z = mb.accelerometer.get_z()
-    time1 = mb.running_time
+    acc_x = (mb.accelerometer.get_x())
+    acc_y = (mb.accelerometer.get_y())
+    acc_z = (mb.accelerometer.get_z())
+    time1 = mb.running_time()
     current_time = time1 - time0
-    message = str(current_time) + "," + str(acc_x) + "," + str(acc_y) + "," + str(acc_z)
+    message = (str(current_time) + "," + str(acc_x) + "," + str(acc_y) + "," + str(acc_z))
+
 
     radio.send(message)
     mb.sleep(10)
