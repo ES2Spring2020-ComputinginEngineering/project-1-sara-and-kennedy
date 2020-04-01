@@ -14,6 +14,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import math
 from numpy import cos
+import scipy.signal as sig 
 
 #Global Variables
 lengths = np.array([.53, .43, .33, .23, .13]) #creates an array of pendulum lengths in meters
@@ -66,4 +67,9 @@ def findperiod(array):
     periodarray = np.array(period)
     plt.plot(lengths, periodarray)
     plt.show
+
+findperiod()
+
+
+
 
