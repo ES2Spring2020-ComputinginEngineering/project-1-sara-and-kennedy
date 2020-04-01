@@ -61,3 +61,8 @@ def period(length, angle1):
     angle = [angle_radians * cos(angular_frequency * i) for i in time]
     peaks = find_peaks(angle)
     return peaks
+
+def physics_period(length):
+    #this is a function that takes the parameter length and returns the period
+    period = [2 * np.pi *np.sqrt(length / g))
+    return period
